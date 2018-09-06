@@ -1,7 +1,7 @@
 package com.goodsogood.ows.service
 
+import com.goodsogood.ows.model.vo.UserEntity
 import com.goodsogood.ows.mapper.UserMapper
-import com.goodsogood.ows.model.UserEntity
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import org.springframework.beans.factory.annotation.Autowired
@@ -25,7 +25,7 @@ class UserService(
      */
     fun addOne(userEntity: UserEntity): Long? {
         userMapper.insert(userEntity)
-        logger.debug(userEntity::userId)
+        logger.debug(userEntity.userId)
 
         return when (userEntity.userId!! > 0) {
             true -> userEntity.userId
