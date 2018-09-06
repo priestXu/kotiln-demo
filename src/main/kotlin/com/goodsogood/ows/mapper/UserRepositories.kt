@@ -1,8 +1,13 @@
 package com.goodsogood.ows.mapper
 
 import com.goodsogood.ows.model.UserEntity
+import org.apache.ibatis.annotations.Mapper
 import org.springframework.stereotype.Repository
 
 @Repository
-@org.apache.ibatis.annotations.Mapper
+@Mapper
 interface UserMapper : MyMapper<UserEntity>
+
+@Repository
+@Mapper
+interface OtherUserMapper : MyMapper<UserEntity>
