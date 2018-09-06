@@ -27,6 +27,7 @@ class UserController(
     @GetMapping("/get")
     fun get(@RequestParam id: Long): ResponseEntity<Result<UserEntity>> {
         logger.debug("id->{}", id)
+        // 如果找不到userEntity（userEntity为空），那么抛出ApiException异常
         val userEntity: UserEntity = userService.findOne(id)
                 ?: throw ApiException("404", Result<UserEntity>(errors, Global.Errors.NOT_FOUND, HttpStatus.OK.value(), "用户"))
         return ResponseEntity(Result(userEntity, errors), HttpStatus.OK)

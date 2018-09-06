@@ -26,6 +26,10 @@ class UserService(
     fun addOne(userEntity: UserEntity): Long? {
         userMapper.insert(userEntity)
         logger.debug(userEntity::userId)
-        return userEntity.userId
+
+        return when (userEntity.userId!! > 0) {
+            true -> userEntity.userId
+            false -> -1
+        }
     }
 }
