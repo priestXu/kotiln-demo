@@ -1,0 +1,7 @@
+rest-factory:
+  max-total: 2000
+  default-maxp-per-route: 200
+  retry-count: 3
+  connect-timeout: 15000
+  read-timeout: 15000
+  request-timeout: 10000

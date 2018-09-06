@@ -1,0 +1,58 @@
+#系统级和业务特殊异常（表单/请求验证异常请配置在ValidationMessages.properties中，默认错误类型为9906）
+#支持${index}方式替换，index从0开始
+error-message:
+  errors:
+    9999: 当前接口已废除
+    9901: 未知错误
+    9902: 当前请求过多或服务器繁忙，请稍后再试
+    9903: 调用外部接口发生错误
+    9904: 当前客户端版本已经过期
+    9905: 登录失效请重新登录
+    9404: ${0}找不到
+    9906: 请求参数发生错误
+    9907: 远程服务调用失败
+
+swagger:
+  show: true
+
+server:
+  port: 7456
+
+spring:
+  #mysql
+  datasource:
+    username: root
+    password: goodsogood
+    url: jdbc:log4jdbc:mysql://172.16.30.145:3306/demo?useSSL=false&useUnicode=true&zeroDateTimeBehavior=convertToNull
+    #url: jdbc:log4jdbc:mysql://192.168.2.238:3306/ows-test?useSSL=false&useUnicode=true&zeroDateTimeBehavior=convertToNull
+    #username: ows-test
+    #password: 123456
+
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    tomcat:
+      validation-query: SELECT 1
+      test-while-idle: true
+      time-between-eviction-runs-millis: 288000
+  #redis
+  redis:
+    database: 0
+    #host: 192.168.2.238
+    password: goodsogood
+    host: 172.16.30.33
+    #host: 192.168.1.50
+    port: 6379
+  application:
+    name: kotlin-demo
+
+
+#eureka客户端，服务自动发现
+eureka:
+  client:
+    service-url: # 指定服务注册中心
+      #defaultZone: http://192.168.2.238:8093/eureka/,http://192.168.2.237:8093/eureka/
+      defaultZone: http://172.16.30.33:21001/eureka/,http://172.16.30.33:21002/eureka/,http://172.16.30.33:21003/eureka/
+  instance:
+    appname: kotlin-demo
+    hostname: 192.168.2.32
+    #节点的名称
+    instance-id: ${spring.application.name}:${random.value}
