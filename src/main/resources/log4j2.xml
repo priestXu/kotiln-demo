@@ -10,16 +10,6 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="[%d{ABSOLUTE}][%-5p][%-25c][%t] [%X{tracker_id}] [%X{span_id}] %m%n"/>
         </Console>
-        <!--<NoSql name="ElasticsearchTimeAppender">-->
-            <!--<Elasticsearch cluster="elasticsearch" host="192.168.2.240" port="9300" index="'loges-'yyyyMMdd"-->
-                           <!--type="loges"-->
-                           <!--flushInterval="5s" security="elastic:Md~LALhSpvtS5P@$wCaG"/>-->
-        <!--</NoSql>-->
-        <!--<NoSql name="OWSElasticsearchTimeAppender">-->
-            <!--<Elasticsearch cluster="elasticsearch" host="192.168.2.240" port="9300" index="'ows-log-'yyyyMMdd"-->
-                           <!--type="log4j2"-->
-                           <!--flushInterval="5s" security="elastic:Md~LALhSpvtS5P@$wCaG"/>-->
-        <!--</NoSql>-->
 
         <!-- 配置日志输出文件名字     追加读写 -->
         <!--<RollingFile name="RollingFile" fileName="${LOG_HOME}/${APP_NAME}-${LEVEL}.log"-->
@@ -42,17 +32,6 @@
 
     </appenders>
     <loggers>
-        <!--
-            这里一定要用 AsyncLogger，不然对主线程影响巨大
-            异步模式可能会造成日志顺序有问题，因此最好在业务log中带上日期或者相关的taskId
-        -->
-        <!--<AsyncLogger name="com.goodsogood.log4j2cm.aop.HttpLogAspect" level="INFO" includeLocation="true">-->
-            <!--<AppenderRef ref="ElasticsearchTimeAppender"/>-->
-        <!--</AsyncLogger>-->
-
-        <!--<AsyncLogger name="com.goodsogood.ows" level="DEBUG" includeLocation="true">-->
-            <!--<AppenderRef ref="OWSElasticsearchTimeAppender"/>-->
-        <!--</AsyncLogger>-->
 
         <!--过滤掉spring一些无用的DEBUG信息-->
         <logger name="org.springframework" level="ERROR"/>
