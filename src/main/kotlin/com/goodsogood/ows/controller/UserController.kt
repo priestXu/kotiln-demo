@@ -39,8 +39,8 @@ class UserController(
 
     @HttpMonitorLogger
     @PostMapping("/add")
-    fun add(@Valid @RequestBody userEntity: UserEntity, bindingResult: BindingResult): ResponseEntity<Result<Long?>> {
+    fun add(@Valid @RequestBody userEntity: UserEntity, bindingResult: BindingResult): ResponseEntity<Result<Long>> {
         logger.debug("userEntity->{}", userEntity)
-        return ResponseEntity(Result(userService.addOne(userEntity), errors), HttpStatus.OK)
+        return ResponseEntity(Result(userService.addOne(userEntity)?:-1, errors), HttpStatus.OK)
     }
 }
